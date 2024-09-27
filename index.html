@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Monitor PWA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Webpage Monitor</h1>
+    <p>Monitoring the value on the page...</p>
+    <p id="target-value">Current Value: <span id="value">0</span></p>
+    <button id="start-monitor">Start Monitoring</button>
+
+    <!-- 注册 Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function (registration) {
+                    console.log('ServiceWorker registered with scope: ', registration.scope);
+                }).catch(function (error) {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+        }
+    </script>
+</body>
+</html>
